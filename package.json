@@ -1,0 +1,24 @@
+{
+  "name": "discord-ripper",
+  "version": "1.0.0",
+  "description": "Discord bot to extract discord data to CSVs.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "csv",
+    "data",
+    "rip",
+    "extract"
+  ],
+  "author": "Will Lamason",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.2",
+    "discord.js": "^11.5.0",
+    "fast-csv": "^2.5.0"
+  }
+}
