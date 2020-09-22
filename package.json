@@ -15,7 +15,7 @@
     "extract"
   ],
   "author": "Will Lamason",
-  "license": "MIT",
+  "license": "Apache License 2.0",
   "dependencies": {
     "async": "^2.6.2",
     "discord.js": "^11.5.0",
