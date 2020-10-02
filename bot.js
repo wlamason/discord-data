@@ -1,5 +1,4 @@
 const fs = require("fs");
-const {inspect} = require("util");
 const Discord = require("discord.js");
 const async = require("async");
 const csv = require("fast-csv");
