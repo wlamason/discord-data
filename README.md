@@ -10,6 +10,10 @@
 
 [Invite link.](https://discord.com/api/oauth2/authorize?client_id=579534804471513100&permissions=130112&scope=bot)
 
+## Self-Hosting
+
+[Documentation on how to create a discord bot account and receive a login token.](https://discordpy.readthedocs.io/en/latest/discord.html)
+
 ## Install
 
 ```sh
@@ -18,8 +22,15 @@ npm install
 
 ## Usage
 
+Local usage:
+
 ```sh
 TOKEN=xxxxx node bot.js
+```
+
+🐳 Docker usage:
+```sh
+docker run -d -e "TOKEN=<YOUR_TOKEN_HERE>" --name discord-data --restart=always wlamason/discord-data
 ```
 
 ## Author
