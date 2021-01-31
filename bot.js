@@ -6,14 +6,15 @@ const csv = require("fast-csv");
 const client = new Discord.Client();
 
 
-// Discord bot configurations
+// DISCORD BOT CONFIGURATIONS
 const config = {
     "prefix": "<"
 };
 
 
-// Utility functions
-const mkdirIfDoesNotExist = (path, mask, cb) => {
+// UTILITY FUNCTIONS
+// Make directory if it does not exist
+const mkdirp = (path, mask, cb) => {
     
     // allow the `mask` parameter to be optional
     if (typeof(mask) == 'function') {
@@ -35,7 +36,7 @@ const mkdirIfDoesNotExist = (path, mask, cb) => {
 }
 
 
-// Discord bot commands.
+// DISCORD BOT COMMANDS
 const ping = async (message) => {
     console.log(ping);
     const m = await message.channel.send("Ping?");
@@ -88,6 +89,7 @@ const roles = async (message) => {
 
     const attachment = new Discord.Attachment(csvPath, `${message.guild.name}-roles.csv`);
     await message.channel.send({file: attachment});
+    fs.unlink(csvPath, err => { if (err) console.error(err) });
 }
 
 const members = async (message) => {
@@ -123,6 +125,7 @@ const members = async (message) => {
 
     const attachment = new Discord.Attachment(csvPath, `${message.guild.name}-members.csv`);
     await message.channel.send({file: attachment});
+    fs.unlink(csvPath, err => { if (err) console.error(err) });
 }
 
 const channels = async (message) => {
@@ -177,6 +180,7 @@ const channels = async (message) => {
 
     const attachment = new Discord.Attachment(csvPath, `${message.guild.name}-channels.csv`);
     await message.channel.send({file: attachment});
+    fs.unlink(csvPath, err => { if (err) console.error(err) });
 }
 
 const channelInfo = async (message) => {
@@ -304,6 +308,7 @@ const messages = async (message, args) => {
             } else {
                 const attachment = new Discord.Attachment(csvPath, `${message.channel.name}-msgs.csv`);
                 await message.channel.send({file: attachment});
+                fs.unlink(csvPath, err => { if (err) console.error(err) });
             }
         }
     );
@@ -328,7 +333,7 @@ const help = async (message) => {
     await message.channel.send(embed);
 }
 
-// Discord bot events.
+// DISCORD BOT EVENTS
 client.on("ready", () => {
     console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`);
     client.user.setActivity("<help>");
@@ -344,6 +349,7 @@ client.on("guildDelete", guild => {
     client.user.setActivity(`Serving ${client.guilds.size} servers`);
 });
 
+// Command handler
 client.on("message", async message => {
     // Cease execution if the message author is a bot, or the message does not begin with the specified prefix.`
     if (message.author.bot) return;
@@ -391,10 +397,10 @@ client.on("message", async message => {
 });
 
 
-// Main script
+// MAIN SCRIPT
 const main = () => {
     // Create a tmp folder if it doesn't exist
-    mkdirIfDoesNotExist(__dirname + '/tmp', 0744, err => { if (err) console.error(err) });
+    mkdirp(__dirname + '/tmp', 0744, err => { if (err) console.error(err) });
 
     // Discord bot login to discord.
     client.login(process.env.TOKEN);
