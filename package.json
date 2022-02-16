@@ -1,5 +1,5 @@
 {
-  "name": "discord-ripper",
+  "name": "discord-data",
   "version": "1.0.0",
   "description": "Discord bot to extract discord data to CSVs.",
   "main": "bot.js",
